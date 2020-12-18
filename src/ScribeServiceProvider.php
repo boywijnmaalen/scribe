@@ -53,11 +53,11 @@ class ScribeServiceProvider extends ServiceProvider
     protected function bootRoutes()
     {
         if (
-            config('scribe.type', 'static') === 'laravel' &&
+            in_array(config('scribe.type', 'static'), ['laravel', 'lumen']) &&
             config('scribe.laravel.add_routes', false)
         ) {
             $this->loadRoutesFrom(
-                __DIR__ . '/../routes/laravel.php'
+                __DIR__ . '/../routes/' . config('scribe.type', 'laravel') . '.php'
             );
         }
     }
